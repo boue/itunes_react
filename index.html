@@ -14,11 +14,29 @@
 
 var App = React.createClass({
 
+    //populate with the response from the iTunes API
     getInitialState: function(){
         return {
             searchResults: []
         }
 
+    },
+
+    showResults: function(response){
+        this.setState({
+            searchResults: response.results
+        })
+    },
+
+    search: function(URL){
+        $.ajax({
+            type: "GET",
+            dataType: 'jsonp',
+            url: URL,
+            success: function(response){
+                this.showResults(response);
+            }.bind(this) //this refers to the App component, if we didn't bind then this would refer to the object you see within the Ajax request - the jqXHR object instead of React component.
+        });
     },
 
     render: function(){
