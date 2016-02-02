@@ -70,9 +70,12 @@ var SearchBox = React.createClass({
 
 var Results = React.createClass({
     render: function(){
+        var resultItems = this.props.searchResults.map(function(result){
+            return <ResultItem key={result.trackId} trackName={result.trackName} />
+        });
         return(
             <ul>
-                <ResultItem />
+                {resultItems}
             </ul>           
         );
     }
