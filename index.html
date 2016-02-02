@@ -55,6 +55,13 @@ var App = React.createClass({
 });
 
 var SearchBox = React.createClass({
+    createAjax: function(){
+        var query = ReactDOM.findDOMNode(this.refs.query).value;
+        var category = ReactDOM.findDOMNode(this.refs.category).value;
+        var URL = 'https://itunes.apple.com/search?term=' + query + '&country=us&entity=' + category;
+        this.props.search(URL);
+    },
+
     render: function(){
         return (
             <div>
