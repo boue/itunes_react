@@ -28,6 +28,7 @@ var App = React.createClass({
         })
     },
 
+    //we pass this function this.search down to the SearchBox component as props
     search: function(URL){
         $.ajax({
             type: "GET",
@@ -46,7 +47,7 @@ var App = React.createClass({
     render: function(){
         return (
             <div>
-                <SearchBox />
+                <SearchBox search={this.search} />
                 <Results searchResults={this.state.searchResults} />
             </div>
         );
@@ -57,12 +58,12 @@ var SearchBox = React.createClass({
     render: function(){
         return (
             <div>
-                <input type="text" />
-                <select>
+                <input type="text" ref="query" />
+                <select ref="category">
                     <option value="software">Apps</option>
                     <option value="movie">Films</option>
                 </select>
-                <input type="submit" />
+                <input type="submit" onClick={this.createAjax} />
             </div>
         );
     }
