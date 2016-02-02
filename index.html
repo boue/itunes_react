@@ -39,11 +39,15 @@ var App = React.createClass({
         });
     },
 
+    componentDidMount(){
+       this.search('https://itunes.apple.com/search?term=fun');
+    },
+
     render: function(){
         return (
             <div>
                 <SearchBox />
-                <Results />
+                <Results searchResults={this.state.searchResults} />
             </div>
         );
     }
